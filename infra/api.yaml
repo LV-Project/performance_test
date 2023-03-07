@@ -1,0 +1,8 @@
+---
+- name: cloning repository from github
+  hosts: all
+  remote_user: ubuntu
+  become: yes
+
+  roles:
+  - api

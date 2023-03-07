@@ -1,0 +1,51 @@
+---
+- name: install dependency
+  apt:
+    name: "{{item}}"
+    state: present
+    update_cache: yes
+  loop:
+    - apt-transport-https
+    - ca-certificates
+    - curl
+    - gnupg-agent
+    - software-properties-common
+
+- name: Add Docker GPG apt Key
+  apt_key:
+    url: https://download.docker.com/linux/ubuntu/gpg
+    state: present
+
+- name: Add Docker Repository
+  apt_repository:
+    repo: deb https://download.docker.com/linux/ubuntu focal stable
+    state: present
+
+- name: Update apt and install docker-ce
+  apt:
+    name: docker-ce
+    state: latest
+    update_cache: true
+
+- name: Make sure docker is active
+  service:
+    name: docker
+    state: started
+    enabled: yes
+
+- name: Clone a github repository
+  git:
+    repo: https://github.com/sunnah-com/api.git
+    dest: /home/ubuntu/api
+    clone: yes
+    update: yes
+
+- name: update .env file
+  command: mv .env.local.sample .env.local 
+  args:
+    chdir: /home/ubuntu/api
+
+- name: Change the working directory to .../api and run docker compose
+  command: docker compose up --detach
+  args:
+    chdir: /home/ubuntu/api
