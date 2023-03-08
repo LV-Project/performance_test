@@ -30,7 +30,7 @@ jobs:
         run: |
           pwd
           test -e /home/runner/work/performance_test/jmeter/RickAndMorthyAPI.jmx && export JMX_FILE="false" || export JMX_FILE="true"
-          if [echo $JMX_FILE]
+          if [[ ${JMX_FILE} ]]
           then 
             exit 1
           fi
