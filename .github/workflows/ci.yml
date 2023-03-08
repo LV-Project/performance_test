@@ -23,31 +23,28 @@ jobs:
           aws-region: us-east-1
         
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
                 
-      - name: Check files existence 
+      - name: Check .jmx file existence 
         id: file-existance
         run: |
-          pwd
           test -e /home/runner/work/performance_test/performance_test/jmeter/RickAndMorthyAPI.jmx && export JMX_FILE="true" || export JMX_FILE="false"
-          echo $JMX_FILE
           if ! [[ ${JMX_FILE} ]] ; 
           then 
-            echo "you should get here..."
+            echo "you shouldn't get here..."
             exit 1
           fi
-      #   #  test -e ./ci/bot_1000.csv && export CSV_FILE="true" || export CSV_FILE="false"
 
-      # - name: Create Config File
-      #   run: |
-      #     export BRANCH_NAME=$(echo $GITHUB_SHA)
-      #     export SCRIPT_NAME="${BRANCH_NAME}.jmx"
-      #     cat template.json \
-      #     | jq ".testId |= \"$BRANCH_NAME\"" \
-      #     | jq ".testName |= \"$BRANCH_NAME\""  \
-      #     | jq ".testScenario.scenarios.CIPipeline.script |= \"$SCRIPT_NAME\"" >> config.json
-      #     cat template.json
-      #     cat config.json
+      - name: Create Config File
+        run: |
+          export BRANCH_NAME=$(echo $GITHUB_SHA)
+          export SCRIPT_NAME="${BRANCH_NAME}.jmx"
+          cat template.json \
+          | jq ".testId |= \"$BRANCH_NAME\"" \
+          | jq ".testName |= \"$BRANCH_NAME\""  \
+          | jq ".testScenario.scenarios.CIPipeline.script |= \"$SCRIPT_NAME\"" >> config.json
+          cat template.json
+          cat config.json
 
       # - name: Create ZIP and upload it to s3
       #   run: |
