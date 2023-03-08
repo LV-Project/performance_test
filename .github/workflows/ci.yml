@@ -24,10 +24,12 @@ jobs:
         
       - name: Checkout
         uses: actions/checkout@v2
+                
+      - name: Check files existence 
         id: file-existance
         run: |
           pwd
-          test -e ./jmeter/RickAndMorthyAPI.jmx && export JMX_FILE="true" || export JMX_FILE="false"
+          test -e /home/runner/work/performance_test/performance_test/jmeter/RickAndMorthyAPI.jmx && export JMX_FILE="true" || export JMX_FILE="false"
           echo $JMX_FILE
           if [[ !${JMX_FILE} ]] ; then exit 1; fi
       #   #  test -e ./ci/bot_1000.csv && export CSV_FILE="true" || export CSV_FILE="false"
