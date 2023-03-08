@@ -1,0 +1,38 @@
+{
+    "testId": "RickAndMorthyAPI",
+    "showLive": true,
+    "testName": "RickAndMorthyAPI",
+    "testType": "jmeter",
+    "fileType": "jmx",
+    "testDescription": "test created from load test API",
+    "testTaskConfigs": [
+      {
+        "taskCount": 1,
+        "taskCluster": "distributed-loadt-test",
+        "subnetA": "subnet-01bfa916599efda59",
+        "ecsCloudWatchLogGroup": "distributed-loadt-test-DLTEcsDLTCloudWatchLogsGroupFE9EC144-yv91V1n8SX5T",
+        "subnetB": "subnet-0c126584b5bfea136",
+        "taskImage": "distributed-load-testing-tester",
+        "region": "us-east-1",
+        "taskSecurityGroup": "sg-006a4604ba09f4d54",
+        "taskDefinition": "arn:aws:ecs:us-east-1:768852790872:task-definition/distributed-loadt-test-DLTEcsDLTTaskDefinition6BFC2400-mqz7kxPw2yCM:1",
+        "concurrency": 1000
+      }
+    ],
+    "testScenario": {
+      "execution": [
+        {
+          "ramp-up": "40s",
+          "hold-for": "2m",
+          "scenario": "CIPipeline"
+        }
+      ],
+      "scenarios": {
+        "CIPipeline": {
+          "script": "RickAndMorthyAPI.jmx"
+        }
+      },
+      "scheduleStep":"start"
+    }
+  }
+  
