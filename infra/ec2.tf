@@ -65,5 +65,5 @@ resource "aws_eip" "my_server_public_ip" {
 }
 
 output "public_ip" {
-  value = aws_instance.my_server.public_ip
+  value = aws_eip.my_server_public_ip
 }
