@@ -37,7 +37,7 @@ jobs:
 
       - name: Create Config File and deploy test to distributed load test
         run: |
-          export BRANCH_NAME=$(echo $GITHUB_SHA | cut -d'/' -f 12)
+          export BRANCH_NAME=$(echo $GITHUB_REF | cut -d'/' -f 8)
           export SCRIPT_NAME="${BRANCH_NAME}.jmx"
 
           cd jmeter
@@ -45,6 +45,8 @@ jobs:
 
           aws s3 cp ./$SCRIPT_NAME s3://distributed-loadt-test-dlttestrunnerstoragedltsce-h6q4dml6oxjh/public/test-scenarios/jmeter/
           
+          sleep 2
+
           cat template.json \
           | jq ".testId |= \"$BRANCH_NAME\"" \
           | jq ".testName |= \"$BRANCH_NAME\""  \
