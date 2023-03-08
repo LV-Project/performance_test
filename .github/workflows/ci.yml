@@ -31,7 +31,11 @@ jobs:
           pwd
           test -e /home/runner/work/performance_test/performance_test/jmeter/RickAndMorthyAPI.jmx && export JMX_FILE="true" || export JMX_FILE="false"
           echo $JMX_FILE
-          if [[ !${JMX_FILE} ]] ; then exit 1; fi
+          if [[ !${JMX_FILE} ]] ; 
+          then 
+            echo "you should get here..."
+            exit 1
+          fi
       #   #  test -e ./ci/bot_1000.csv && export CSV_FILE="true" || export CSV_FILE="false"
 
       # - name: Create Config File
