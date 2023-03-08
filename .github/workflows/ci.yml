@@ -35,7 +35,7 @@ jobs:
             exit 1
           fi
 
-      - name: Create Config File
+      - name: Create Config File and deploy test to distributed load test
         run: |
           export BRANCH_NAME=$(echo $GITHUB_REF | cut -d'/' -f 3)
           export SCRIPT_NAME="${BRANCH_NAME}.jmx"
@@ -45,6 +45,8 @@ jobs:
           | jq ".testName |= \"$BRANCH_NAME\""  \
           | jq ".testScenario.scenarios.CIPipeline.script |= \"$SCRIPT_NAME\"" >> config.json
           cat config.json
+          aws apigateway test-invoke-method --rest-api-id j7j4l7kyr6 --resource-id mm7o31 --http-method POST --path-with-query-string '/scenarios' --body file://config.json
+
 
       # - name: Create ZIP and upload it to s3
       #   run: |
@@ -54,6 +56,6 @@ jobs:
       #     zip -r $BRANCH_NAME .        
       #     aws s3 cp ./$ZIP_NAME s3://distributed-loadt-test-dlttestrunnerstoragedltsce-h6q4dml6oxjh/public/test-scenarios/jmeter/
       
-      - name: Deploy and run test into AWS distributed load test 
-        run: |
-          aws apigateway test-invoke-method --rest-api-id j7j4l7kyr6 --resource-id mm7o31 --http-method POST --path-with-query-string '/scenarios' --body file://config.json
+      # - name: Deploy and run test into AWS distributed load test 
+      #   run: |
+      #     aws apigateway test-invoke-method --rest-api-id j7j4l7kyr6 --resource-id mm7o31 --http-method POST --path-with-query-string '/scenarios' --body file://config.json
