@@ -39,6 +39,7 @@ jobs:
         run: |
           export BRANCH_NAME=$(echo $GITHUB_SHA)
           export SCRIPT_NAME="${BRANCH_NAME}.jmx"
+          cd jmeter
           cat template.json \
           | jq ".testId |= \"$BRANCH_NAME\"" \
           | jq ".testName |= \"$BRANCH_NAME\""  \
