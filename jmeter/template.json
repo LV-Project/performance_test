@@ -4,7 +4,7 @@
     "testName": "RickAndMorthyAPI",
     "testType": "jmeter",
     "fileType": "jmx",
-    "testDescription": "test created from load test API",
+    "testDescription": "Performance test as CI, test triggered from github actions",
     "testTaskConfigs": [
       {
         "taskCount": 1,

@@ -37,7 +37,7 @@ jobs:
 
       - name: Create Config File and deploy test to distributed load test
         run: |
-          export BRANCH_NAME=$(echo $GITHUB_REF | cut -d'/' -f 8)
+          export BRANCH_NAME=$(echo $GITHUB_SHA | cut -d'/' -f 8)
           export SCRIPT_NAME="${BRANCH_NAME}.jmx"
 
           cd jmeter
@@ -49,10 +49,10 @@ jobs:
 
           cat template.json \
           | jq ".testId |= \"$BRANCH_NAME\"" \
-          | jq ".testName |= \"$BRANCH_NAME\""  \
+          | jq ".testName |= \"$BRANCH_NAME\"" \
           | jq ".testScenario.scenarios.CIPipeline.script |= \"$SCRIPT_NAME\"" >> config.json
           cat config.json
-          
+
           aws apigateway test-invoke-method --rest-api-id j7j4l7kyr6 --resource-id mm7o31 --http-method POST --path-with-query-string '/scenarios' --body file://config.json
 
 
