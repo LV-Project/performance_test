@@ -1,5 +1,8 @@
 name: Deploy performance test to AWS distribute load test
 
+on:
+  workflow_dispatch:
+
 #     paths-ignore:
 #       - '.github/**'
 jobs:
