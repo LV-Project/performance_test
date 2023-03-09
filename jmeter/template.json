@@ -16,7 +16,7 @@
         "region": "us-east-1",
         "taskSecurityGroup": "sg-006a4604ba09f4d54",
         "taskDefinition": "arn:aws:ecs:us-east-1:768852790872:task-definition/distributed-loadt-test-DLTEcsDLTTaskDefinition6BFC2400-mqz7kxPw2yCM:1",
-        "concurrency": 1000
+        "concurrency": 200
       }
     ],
     "testScenario": {
