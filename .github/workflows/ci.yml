@@ -48,7 +48,7 @@ jobs:
           cat config.json
 
           aws apigateway test-invoke-method --rest-api-id j7j4l7kyr6 --resource-id mm7o31 --http-method POST --path-with-query-string '/scenarios' --body file://config.json
-
+          sleep 5
           aws s3 rm s3://distributed-loadt-test-dlttestrunnerstoragedltsce-h6q4dml6oxjh/public/test-scenarios/jmeter/$SCRIPT_NAME
 
       # - name: Deploy and run test into AWS distributed load test 
