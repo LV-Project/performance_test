@@ -45,7 +45,7 @@ jobs:
 
           cat template.json \
           | jq ".testId |= \"RickAndMorthyAPI\"" \
-          | jq ".testName |= \"RickAndMorthyAPI\"" \
+          | jq ".testName |= \"$BRANCH_NAME\"" \
           | jq ".testScenario.scenarios.CIPipeline.script |= \"RickAndMorthyAPI.jmx\"" >> config.json
           cat config.json
 
