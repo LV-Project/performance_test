@@ -38,17 +38,14 @@ jobs:
 
           cd jmeter
           mv RickAndMorthyAPI.jmx $SCRIPT_NAME
-
+          
+          aws s3 rm s3://distributed-loadt-test-dlttestrunnerstoragedltsce-h6q4dml6oxjh/public/test-scenarios/jmeter/ --recursive
           aws s3 cp ./$SCRIPT_NAME s3://distributed-loadt-test-dlttestrunnerstoragedltsce-h6q4dml6oxjh/public/test-scenarios/jmeter/
 
           cat template.json \
           | jq ".testId |= \"$BRANCH_NAME\"" \
-          | jq ".testName |= \"Your test\"" \
+          | jq ".testName |= \"Your test name\"" \
           | jq ".testScenario.scenarios.CIPipeline.script |= \"$SCRIPT_NAME\"" >> config.json
           cat config.json
 
           aws apigateway test-invoke-method --rest-api-id j7j4l7kyr6 --resource-id mm7o31 --http-method POST --path-with-query-string '/scenarios' --body file://config.json
-
-      # - name: Deploy and run test into AWS distributed load test 
-      #   run: |
-      #     aws apigateway test-invoke-method --rest-api-id j7j4l7kyr6 --resource-id mm7o31 --http-method POST --path-with-query-string '/scenarios' --body file://config.json
