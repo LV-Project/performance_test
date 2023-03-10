@@ -39,10 +39,10 @@ jobs:
           cd jmeter
           mv RickAndMorthyAPI.jmx $SCRIPT_NAME
 
-
+          aws s3 cp ./$SCRIPT_NAME s3://distributed-loadt-test-dlttestrunnerstoragedltsce-h6q4dml6oxjh/public/test-scenarios/jmeter/
 
           cat template.json \
-          | jq ".testId |= \"RickAndMorthyAPI\"" \
+          | jq ".testId |= \"$BRANCH_NAME\"" \
           | jq ".testName |= \"$BRANCH_NAME\"" \
           | jq ".testScenario.scenarios.CIPipeline.script |= \"RickAndMorthyAPI.jmx\"" >> config.json
           cat config.json
