@@ -45,8 +45,8 @@ jobs:
 
           cat template.json \
           | jq ".testId |= \"$BRANCH_NAME\"" \
-          | jq ".testName |= \"$BRANCH_NAME\"" \
-          | jq ".testScenario.scenarios.CIPipeline.script |= \"$SCRIPT_NAME\"" >> config.json
+          | jq ".testName |= \"RickAndMorthyAPI\"" \
+          | jq ".testScenario.scenarios.CIPipeline.script |= \"RickAndMorthyAPI.jmx\"" >> config.json
           cat config.json
 
           aws apigateway test-invoke-method --rest-api-id j7j4l7kyr6 --resource-id mm7o31 --http-method POST --path-with-query-string '/scenarios' --body file://config.json
