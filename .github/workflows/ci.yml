@@ -48,4 +48,4 @@ jobs:
           | jq ".testScenario.scenarios.CIPipeline.script |= \"$SCRIPT_NAME\"" >> config.json
           cat config.json
 
-          aws apigateway test-invoke-method --rest-api-id j7j4l7kyr6 --resource-id mm7o31 --http-method POST --path-with-query-string '/scenarios' --body file://config.json
+          aws apigateway test-invoke-method --rest-api-id dr22sjtnhj --resource-id 2ct3li --http-method POST --path-with-query-string '/scenarios' --body file://config.json
