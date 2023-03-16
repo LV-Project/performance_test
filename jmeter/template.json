@@ -8,14 +8,14 @@
     "testTaskConfigs": [
       {
         "taskCount": 1, 
-        "taskCluster": "distributed-loadt-test", 
-        "subnetA": "subnet-01bfa916599efda59", 
-        "ecsCloudWatchLogGroup": "distributed-loadt-test-DLTEcsDLTCloudWatchLogsGroupFE9EC144-yv91V1n8SX5T",
-        "subnetB": "subnet-0c126584b5bfea136", 
+        "taskCluster": "distributed-test", 
+        "subnetA": "subnet-073ccc57992435169", 
+        "ecsCloudWatchLogGroup": "distributed-test-DLTEcsDLTCloudWatchLogsGroupFE9EC144-nL4nbgWI27uA",
+        "subnetB": "subnet-09a47ccb9557a8770", 
         "taskImage": "public.ecr.aws/aws-solutions/distributed-load-testing-on-aws-load-tester:v3.1.1",
         "region": "us-east-1",
-        "taskSecurityGroup": "sg-006a4604ba09f4d54",
-        "taskDefinition": "arn:aws:ecs:us-east-1:768852790872:task-definition/distributed-loadt-test-DLTEcsDLTTaskDefinition6BFC2400-mqz7kxPw2yCM:1",
+        "taskSecurityGroup": "sg-04f113c85caaf6786",
+        "taskDefinition": "arn:aws:ecs:us-east-1:768852790872:task-definition/distributed-test-DLTEcsDLTTaskDefinition6BFC2400-ZmblnKVO4H53:1",
         "concurrency": 200
       }
     ],
@@ -29,7 +29,7 @@
       ],
       "scenarios": {
         "CIPipeline": {
-          "script": "RickAndMorthyAPI.jmx"
+          "script": "9RXhQqBuqe.jmx"
         }
       },
       "scheduleStep":"start"
