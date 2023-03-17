@@ -1,0 +1,38 @@
+{
+    "fileType": "script",
+    "regionalTaskDetails": {
+        "us-east-1": {
+            "vCPULimit": 30,
+            "vCPUsPerTask": 2,
+            "vCPUsInUse": 0,
+            "dltTaskLimit": 15,
+            "dltAvailableTasks": 15
+        }
+    },
+    "showLive": true,
+    "testDescription": "test",
+    "testId": "hjm1rarL8g",
+    "testName": "test",
+    "testScenario": {
+        "execution": [
+            {
+                "ramp-up": "40s",
+                "hold-for": "40s",
+                "scenario": "test"
+            }
+        ],
+        "scenarios": {
+            "test": {
+                "script": "hjm1rarL8g.jmx"
+            }
+        }
+    },
+    "testTaskConfigs": [
+        {
+            "concurrency": "100",
+            "taskCount": "1",
+            "region": "us-east-1"
+        }
+    ],
+    "testType": "jmeter"
+}
